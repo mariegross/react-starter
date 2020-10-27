@@ -6,6 +6,9 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   function handleClick(index) {
+    if (calculateWinner(squares) || squares[index]) {
+      return;
+    }
     const newSquares = squares.slice();
     newSquares[index] = xIsNext ? "X" : "O";
     setSquares(newSquares);
